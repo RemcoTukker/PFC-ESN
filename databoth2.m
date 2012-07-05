@@ -1,7 +1,11 @@
+% This file calls ESNtest4 a large number of times with a couple of settings. This gives the performance distributions found in the thesis and paper
+% Created by Remco Tukker
+
 clear all;
 
-trials = 200;
+trials = 200;   %number of trials per parameter setting
 
+%alternative parameter settings
 %p = [0.8 200 0.05 0.1 0.9 5 0.3 15 0.25]; %better for p
 %p = [1.0 200 0.05 0.1 0.9 5 0.3 15 0.25]; %better for t
 
@@ -11,9 +15,9 @@ trials = 200;
 p = [0.6 200 0.05 0.1 0.9 5 0.3 15 0.25];
 
 nrofcues =   [1 2 3 4 5 6 7 8];
-%nrofinputs = [7 7 7 9 11 13 15];
 nrofinputs = [3 5 7 9 11 13 15 17];
 
+% the performance, mean output weight, and difference between training and test performance is returned
 perfp = zeros(2, numel(nrofcues), trials);
 meansp = zeros(2, numel(nrofcues), trials);
 diffsp = zeros(2, numel(nrofcues), trials);
@@ -27,12 +31,14 @@ for i = 1:trials
    disp(i);
 end
 
+%put the data in some nice collection matrices: perfp dimension 1 is the difference in input method, dim 2 is the number of cues and dim 3 are the individual trials
 perfcollectionp = zeros(2* size(perfp,2), trials );
 for i = 1:size(perfp,2)
    perfcollectionp(i*2-1,:) = perfp(1,i,:);
    perfcollectionp(i*2,:) = perfp(2,i,:);
 end
 
+% take the median as a measure of performance difference
 barperfp = median(squeeze(perfp(1,:,:)),2) - median(squeeze(perfp(2,:,:)),2);
 
 % %make picture with current parameter settings somewhere
@@ -45,6 +51,8 @@ barperfp = median(squeeze(perfp(1,:,:)),2) - median(squeeze(perfp(2,:,:)),2);
 %         ' is ',num2str(p(j,6)), ' bs ',num2str(p(j,7)), ' ts ',num2str(p(j,8)) , ' tr ' ,num2str(p(j,9))  ])    
     
 %% temporal abstraction
+
+% (exactly the same structure as above; see the comments there)
 
 p = [1.0 100 0.05 0.1 0.9 5 0.3 15 0.25];
 

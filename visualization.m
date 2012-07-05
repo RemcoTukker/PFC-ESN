@@ -1,3 +1,6 @@
+% this script simply takes the saved data and creates the exact plots as found in the paper and thesis
+% Remco Tukker
+
 load data2.mat
 
 %%

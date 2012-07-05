@@ -1,3 +1,6 @@
+% this is a standalone version of ESNtest4.m to create the MDS plots found in the paper and thesis
+% Remco Tukker
+
 
 task = 2; 
 memlength = 2; 

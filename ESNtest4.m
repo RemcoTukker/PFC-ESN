@@ -1,6 +1,26 @@
 function [perf, meanweights, testtraindiff] = ESNtest4(task, memlength, inputtype, relevantcues, inputLength, ...
     topdownscaling, netDim, connectivity, inputConnectivity, radius, inputScaling, biasScaling, timesteps, topratio)
 
+% This function takes a large number of parameters to set up the ESN and the task. It returns the performance of the ESN, 
+% the mean output weight and the performance difference between the training and test trials.
+% 
+% Remco Tukker
+%
+% parameters: 
+% task: 1 policy (WCS) 2 temporal (n-back)
+% memlength: 0 for no temporal abstraction, larger integers for n back task
+% inputtype: 1 seperated (topological) inputs 2 uniform input
+% relevantcues & inputlength: amount of relevant cues in WCS task and total number of inputs. Should match, check code
+% topdownscaling: scaling factor for connections from top to bottom area in the connection matrix
+% netDim: reservoir size
+% connectivity: fraction of non-zero elements in the connectivity matrix
+% inputConnectivity: fraction of non-zero elements in the input matrix
+% radius: spectral radius, determines weight size in connectivity 
+% inputScaling: input matrix is multiplied with this number
+% biasScaling: how large the biases in the reservoir are
+% timesteps: number of timesteps from giving input until readout
+% topratio: fraction of nodes that is in the top cluster of the network
+
 %============== Setting the variables and helper functions
 
 g = @(x, b)(tanh(x + b));   %activation function
