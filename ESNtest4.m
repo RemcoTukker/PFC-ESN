@@ -100,7 +100,7 @@ switch inputtype
     case 2  %non-seperated inputs
         inWM(:,1) = spfun(minusHalf, sprand(netDim, 1, inputConnectivity * topDim/(topDim+bottomDim) ) );
         for k = 2:inputLength
-            inWM(:,k) = spfun(minusHalf, sprand(netDim, 1, inputConnectivity* topDim/(topDim+bottomDim) ) );
+            inWM(:,k) = spfun(minusHalf, sprand(netDim, 1, inputConnectivity* bottomDim/(topDim+bottomDim) ) );
         end % seperate columns to make sure every input receives the same amount of connections    
     otherwise
         disp('invalid input type number');
